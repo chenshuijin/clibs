@@ -1,0 +1,2 @@
+# clibs
+c program libs
