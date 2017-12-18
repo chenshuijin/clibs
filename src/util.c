@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 char* reverse(char *p)
 {
@@ -32,9 +33,9 @@ char itoc(int i, int base)
   if (i >= 0 && i < base)
     {
       if(i <= 9)
-	return (i | 0xf0 & 0x3f);
+	return (i | (0xf0 & 0x3f));
       else
-	return ((i-9) | 0xf0 & 0x4f);
+	return ((i-9) | (0xf0 & 0x4f));
     }
   else return i;
 }
