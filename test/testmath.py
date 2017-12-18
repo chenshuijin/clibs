@@ -18,10 +18,26 @@ def testadd():
         ("9", "0999", 10),
         ("101", "39", 10),
         ("12123232aaaaa32323", "1222323232aaaaaaaffffff323", 16),
+        ("323232323aaabcdefaaaaaaaaaaaaaaaaaeeeeeeeeee12123232aaaaa32323", "1222323232aaaaaaaffffff323", 16),
+        ("ffffffffffffffffffffffffffffffffffffffffffffff12123232aaaaa32323", "0000000000000000000000000000000aaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbcccccccccccdddddddddddddddddeeeeeeeeeeeeeeeffffffffffffff1222323232aaaaaaaffffff323", 16),
+        ("0000000000000000000000000000000000000000000000000000012123232aaaaa32323", "1222323232aaaaaaaffffff323fffffffffffffffffffffffffffffffffffffffffffffffffff", 16),
+        ("00000000000000000000000000000000000000000000000000000", "00000000", 16),
+        ("ffffffffffffffffffffff12123232aaaaa32323", "1222323232aaaaaaaffffff323fffffffffffffffffffffffffffffffffffffffffffffffffff", 16),
+        ("ffffffffffffffffff", "ffffffffffffffff", 16),
+        ("fffff", "fffff", 16),
         ("f", "f", 16),
+        ("fff", "fff", 16),
         ("f", "ff", 16),
         ("0f", "ff", 16),
         ("0", "ff", 16),
+        ("0000", "000000", 8),
+        ("0001", "1234567", 8),
+        ("7777777777777777777777777777777777777777777777", "1234567", 8),
+        ("777777777777777777777", "00000", 8),
+        ("777777777777777777777777777777777", "7777777777777777777777", 8),
+        ("7777777777777777777777777777777777777777777777777777", "777777777777777", 8),
+        ("00000", "77777777777", 8),
+
     ]
 
     lib.add.restype = c_char_p
