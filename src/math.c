@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "util.h"
+
+char* add(char *l, char *r, int base)
+{
+  int len=0, i = 0, j = 0, c = 0, tmp = 0;
+  char *result, *s, tmpc;
+  lstrip(l, '0');lstrip(r, '0');
+  if (strlen(l) < strlen(r)) return add(r, l, base);
+
+  if ((result = (char*)malloc(strlen(l)+2)) == NULL) return NULL;
+  memset(result, 0, strlen(l) + 2);
+
+  reverse(l);reverse(r);
+  strcpy(result, l);
+  len = strlen(r);
+
+  s = r;
+  i = 0, c = 0, tmp = 0;
+
+  while(1){
+    if (i >= len) {
+      if (c <= 0) break;
+    }
+    else tmp = ctoi(*(s+i));
+
+    tmp += ctoi(*(result + i)) + c;
+
+    c = tmp/base;
+    tmp %=base;
+
+    tmpc = itoc(tmp, base);
+    *(result + i) = tmpc;
+    i ++; tmp = 0;
+  }
+
+  reverse(l);reverse(r);reverse(result);
+  lstrip(result, '0');
+
+  return result;
+}
