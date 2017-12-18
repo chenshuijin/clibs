@@ -1,13 +1,21 @@
-.PHONY: all clean app
+.PHONY: all clean app so
 
-all: clean app
-objs=exponentiation.o
+all: clean so app
 
-app: $(objs)
-	cd ../bin && cc $< -o $@
+objs=exponentiation.o util.o math.o
+sobjs=util.so math.so
+
+app: $(objs) $(sobjs)
+	cd ../bin && cc $^ -o $@
+
+so: $(sobjs)
+#	cc -shared -fPIC $^ -o ../bin/$@
 
 .c.o:
 	cc -c $< -o ../bin/$@
-#	cc -c $<
+
+%.so:$(objs)
+	cd ../bin && cc -shared -fPIC $^ -o $@
+
 clean:
-	-rm *.o
+	-rm *.o *.so
