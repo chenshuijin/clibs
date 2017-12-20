@@ -103,7 +103,37 @@ def testlstrip():
 
     print(sys._getframe().f_code.co_name,"Passed:",successCount,"Failed:",failCount)
 
+def testrpad():
+    successCount = 0
+    failCount = 0
+
+    dm=[("abcdef", "c", 7),
+        ("abcdef", "0", 0),
+        ("abcdef", "0", 1),
+        ("abcdef", "0", 100),
+    ]
+
+    lib.rpad.restype = c_char_p
+    for i in dm:
+        dest=c_char_p(bytes(i[2]))
+        src=c_char_p(str.encode(i[0]))
+        c=c_char(str.encode(i[1]))
+        len=c_int(i[2])
+        ret=lib.rpad(dest, src, c, len)
+        if ret.decode() == i[0].ljust(i[2], i[1]):
+            successCount += 1
+        else:
+            failCount += 1
+            print("Failed at:",i)
+            print("ret:", ret.decode())
+            print("expect:", i[0].ljust(i[2], i[1]))
+
+    print(sys._getframe().f_code.co_name,"Passed:",successCount,"Failed:",failCount)
+
+#'''
 testreverse()
 testctoi()
 testitoc()
 testlstrip()
+#'''
+testrpad()
