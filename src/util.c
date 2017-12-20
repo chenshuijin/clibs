@@ -61,3 +61,16 @@ char* lstrip(char *s, char c)
   memset(s+l-i, 0, sizeof(char)*i);
   return s;
 }
+
+char* rpad(char* dest, char *src, char c, int len)
+{
+  int i = 0, slen = 0;
+  slen = strlen(src);
+  memset(dest, 0, len+1);
+  strcpy(dest, src);
+  if (len <= slen){
+    return dest;
+  }
+  memset(dest+slen, c, len-slen);
+  return dest;
+}
