@@ -6,12 +6,14 @@ jobs:
     steps:
       - checkout
       - run: make
+
   test:
     docker:
       - image: circleci/python
     steps:
       - checkout
       - run: make test
+
 workflows:
   version: 2
   build_and_test:
