@@ -12,7 +12,7 @@ so: $(sobjs)
 #	cc -shared -fPIC $^ -o ../bin/$@
 
 .c.o:
-	cc -c $< -o ../bin/$@
+	cc -c $< -o ../bin/$@ -fPIC
 
 %.so:$(objs)
 	cd ../bin && cc -shared -fPIC $^ -o $@
