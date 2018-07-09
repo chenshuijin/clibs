@@ -1,13 +1,20 @@
 version: 2
 jobs:
   build:
+    docker:
+      - image: circleci/python
     steps:
       - checkout
       - run: make
+
   test:
+    docker:
+      - image: circleci/python
     steps:
       - checkout
+      - run: make
       - run: make test
+
 workflows:
   version: 2
   build_and_test:
