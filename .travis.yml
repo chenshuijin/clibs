@@ -1,0 +1,10 @@
+language: c
+rvm:
+  - 2.3
+jobs:
+  include:
+    - stage: build
+      rvm: 2.4
+      script:
+      - make
+      - make test
